@@ -21,11 +21,6 @@ spring:
     username: "sa"
     password: ""
     driver-class-name: "org.h2.Driver"
-    # MySQL
-    #url: jdbc:mysql://localhost/test              # Connection String
-    #username: dbuser                              # Database Application account with full permissions
-    #password: dbpass
-    #driver-class-name: com.mysql.jdbc.Driver
 
   h2:
     console:
@@ -37,51 +32,26 @@ spring:
       ddl-auto: "update"    # none, update, create, create-drop
     show-sql: true       # Logs SQL as its executed by JPA. Set org.hibernate logging level to INFO.
 
-# Application Endpoint
 server:
   port: 4150
 
-# Logging
 logging:
-  # Change Output Format
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"
-  # Set Varying Log Levels Depending on Namespace
   level:
     com.diezel: TRACE
     org.springframework.web: INFO
     org.hibernate: INFO
-  #file: "C:\diezel\alexa-concierge\logs\diezel.log"    # Log to disk
 
-# Security
 management:
   security:
     enabled: false      # Disable to access actuator endpoints without requiring authentication.
 
-# ---- Application-Properties Below ----
 alexa-concierge:
+  integration:
+    google:
+      geocoding:
+        apiEndpoint: https://maps.googleapis.com/maps/api/geocode/outputFormat?parameters
+        apiKey: AIzaSyDWSbjeTUUyAp63Ibz6RvR2cNmIRCDTeXU                                     # Generated 4/22/18
   security:
     enabled: false
-
-
----
-
-# Cloud Profile Configuration
-
-# Cloud
-spring:
-  profiles: prod   # Overwrite some local config values when hosted live in production environment.
-
-  # Database
-  jpa:
-    properties:
-      hibernate:
-        ddl-auto: validate    # Validate schema, do not make changes.
-  h2:
-    console:
-      enabled: true
-      path: "/h2"
-
-  management:
-    security:
-      enabled: false

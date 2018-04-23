@@ -1,0 +1,21 @@
+# Production Configuration Values
+spring:
+  profiles: prod    # Is this even necessary in separate config file?
+  #datasource:
+    # MySQL
+    #url: jdbc:mysql://localhost/test              # Connection String
+    #username: dbuser                              # Database Application account with full permissions
+    #password: dbpass
+    #driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: validate    # Validate schema, do not make changes.
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
+
+  management:
+    security:
+      enabled: false
